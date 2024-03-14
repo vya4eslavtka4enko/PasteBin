@@ -9,33 +9,29 @@ def index(request):
 def create_user(request):
     all_user = ''
     if request.method == "POST":
-        User.objects.create(user_name='',email_name='')
-
-
-
-
-    # if request.method == 'POST':
-    #     if form.is_valid():
-    #         user=form.save(commit=False)
-    #         user.user_name=request.user
-    #         user.save()
-    #         return redirect('/')
-    #     else:
-    #         # The supplied form contained errors - just print them to the terminal.
-    #         print(form.errors)
-    # else:
-    #     # If the request was not a POST, display the form to enter details.
-    #     form = User()
-    #
-    #     # Bad form (or form details), no form supplied...
-    #     # Render the form with error messages (if any).
+        user_email = request.POST.get('user_email')
+        user_name = request.POST.get('user_name')
+        user_password = request.POST.get('user_password')
+        User.objects.create(user_name=user_name,email_name=user_email,user_password=user_password)
     return render(request,'user_registration.html', {'users':all_user})
 
 
 
 def user_enter(request):
+        print("hello")
     # if request.method == "POST":
-     return render(request,'main.html',)
+        enter_user_email=request.POST.get('enter_user_email')
+        enter_user_pass=request.POST.get('enter_user_pass')
+        print(enter_user_pass)
+        print(enter_user_email)
+        # if not User.objects.filter(email_name = enter_user_email,user_password = enter_user_pass):
+        #     print('no')
+        # else:
+        #     print("yes")
+        #     return render(request,  'main.html')
+        return render(request, 'index.html')
+
+
 
 
 def add_post(request):
